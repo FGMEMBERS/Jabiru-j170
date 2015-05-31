@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+	<name>dual-dlg</name>
+	<layout>vbox</layout>
+
+	<text>
+		<label>Dual Control Menu</label>
+	</text>
+
+	<hrule />
+	
+	<group>
+		<layout>hbox</layout>
+		
+		<text>
+			<label>Pilot</label>
+		</text>
+		<input>
+			<name>callsign</name>
+			<row>0</row>
+			<col>0</col>
+			<width>100</width>
+			<height>25</height>
+			<property>/dualcontrol/pilot-callsign</property>
+			<live>true</live>
+			<binding>
+				<command>dialog-apply</command>
+				<object-name>callsign</object-name>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>
+					var found = 0;
+					for(var n=0; getprop("/ai/models/multiplayer["~n~"]/callsign") != nil; n+=1) {
+						if ((found == 0) and (getprop("/ai/models/multiplayer["~n~"]/callsign") == getprop("/dualcontrol/pilot-callsign"))) {
+							screen.log.write("Found Multiplayer Pilot: "~getprop("/dualcontrol/pilot-callsign")~"!", 0, 0.584, 1);
+							setprop("/dualcontrol/pilot", n);
+							found = 1;
+						}
+					}
+					
+					if (found == 0) {
+						screen.log.write("Cannot find multiplayer pilot: "~getprop("/dualcontrol/pilot-callsign")~"!", 1, 0, 1);
+					}
+				</script>
+			</binding>
+		</input>
+		
+	</group>
+	
+	<hrule />
+	
+	<group>
+		<layout>hbox</layout>
+	
+		<text>
+			<label>Activate Dual Control</label>
+		</text>
+		
+		<checkbox>
+			<width>16</width>
+			<height>16</height>
+			<property>/dualcontrol/active</property>
+			<live>true</live>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+			<binding>
+				<command>nasal</command>
+			</binding>
+		</checkbox>
+	
+	</group>
+
+	<group>
+		<layout>vbox</layout>
+
+		<button>
+			<legend>Close</legend>
+			<default>true</default>
+			<key>Esc</key>
+			<padding>10</padding>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+			<binding>
+				<command>dialog-close</command>
+			</binding>
+		</button>
+	</group>
+
+</PropertyList>

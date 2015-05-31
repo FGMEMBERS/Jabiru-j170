@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<sim>    
+  <model>        
+    <livery>
+      <name type="string">Embry-Riddle Eagles</name>
+      <texture-main>ERAU_Eagles-main.png</texture-main>
+      <texture-wings>ERAU_Eagles-wings.png</texture-wings>
+    </livery>
+  </model>
+</sim>
+
+</PropertyList>

@@ -1,0 +1,1025 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+	<path>ga500-gps.ac</path>
+	
+	<model>
+		<name>map</name>
+		<path>Aircraft/Jabiru-j170/Models/Garmin_Aera500/ga500-map.xml</path>
+		<condition>
+			<equals>
+				<property>aera500-GPS/page</property>
+				<value>Map</value>
+			</equals>
+		</condition>
+	</model>
+	
+	<model>
+		<name>terrain</name>
+		<path>Aircraft/Jabiru-j170/Models/Garmin_Aera500/ga500-terrain.xml</path>
+		<condition>
+			<equals>
+				<property>aera500-GPS/page</property>
+				<value>Terrain</value>
+			</equals>
+		</condition>
+	</model>
+	
+	<!-- Battery Indicator -->
+	
+	<animation>
+		<type>select</type>
+		<object-name>menubar_battery_0.25</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>/systems/electric/battery-charge</property>
+				<value>0.25</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>menubar_battery_0.5</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>/systems/electric/battery-charge</property>
+				<value>0.5</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>menubar_battery_0.75</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>/systems/electric/battery-charge</property>
+				<value>0.75</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>menubar_battery_1</object-name>
+		<condition>
+			<greater-than-equals>
+				<property>/systems/electric/battery-charge</property>
+				<value>0.95</value>
+			</greater-than-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>menu</object-name>
+		<object-name>menu_map</object-name>
+		<object-name>menu_terrain</object-name>
+		<object-name>menu_hsi</object-name>
+		<object-name>menu_nearest</object-name>
+		<object-name>menu_num</object-name>
+		<object-name>menu_flightplan</object-name>
+		<object-name>menu_wptinfo</object-name>
+		<object-name>menu_directto</object-name>
+		<object-name>menu_gps</object-name>
+		<object-name>menu_tools</object-name>
+		<condition>
+			<equals>
+				<property>aera500-GPS/page</property>
+				<value>Home</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>menu_map</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-cycle</command>
+				<property>aera500-GPS/page</property>
+				<value>Map</value>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>menu_terrain</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-cycle</command>
+				<property>aera500-GPS/page</property>
+				<value>Terrain</value>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>menu_hsi</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-cycle</command>
+				<property>aera500-GPS/page</property>
+				<value>HSI</value>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>menu_nearest</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-cycle</command>
+				<property>aera500-GPS/page</property>
+				<value>Nearest Airport</value>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>menu_num</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-cycle</command>
+				<property>aera500-GPS/page</property>
+				<value>Numbers</value>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>menu_flightplan</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-cycle</command>
+				<property>aera500-GPS/page</property>
+				<value>Active Flightplan</value>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>menu_wptinfo</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-cycle</command>
+				<property>aera500-GPS/page</property>
+				<value>Waypoint Information</value>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>menu_directto</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-cycle</command>
+				<property>aera500-GPS/page</property>
+				<value>Direct To Waypoint</value>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>menu_gps</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-cycle</command>
+				<property>aera500-GPS/page</property>
+				<value>Position</value>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>menu_tools</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-cycle</command>
+				<property>aera500-GPS/page</property>
+				<value>Tools</value>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>menu_home</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-cycle</command>
+				<property>aera500-GPS/page</property>
+				<value>Home</value>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>menu_zoomout</object-name>
+		<action>
+			<button>0</button>
+			<button>3</button>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>aera500-GPS/range</property>
+				<step>1</step>
+				<max>100</max>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>menu_zoomin</object-name>
+		<action>
+			<button>0</button>
+			<button>3</button>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>aera500-GPS/range</property>
+				<step>-1</step>
+				<min>1</min>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>menu_zoomin</object-name>
+		<object-name>menu_zoomout</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>aera500-GPS/page</property>
+					<value>Map</value>
+				</equals>
+				<equals>
+					<property>aera500-GPS/page</property>
+					<value>Terrain</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>arc</object-name>
+		<object-name>heading</object-name>
+		<object-name>hdgtext</object-name>
+		<object-name>hdgtext.001</object-name>
+		<object-name>hdgtext.002</object-name>
+		<condition>
+			<equals>
+				<property>aera500-GPS/page</property>
+				<value>Map</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>menu_pageup</object-name>
+		<object-name>menu_pagedown</object-name>
+		<condition>
+			<or>
+				<equals>
+					<property>aera500-GPS/page</property>
+					<value>Active Flightplan</value>
+				</equals>
+				<equals>
+					<property>aera500-GPS/page</property>
+					<value>Waypoint Search</value>
+				</equals>
+			</or>
+		</condition>
+	</animation>
+	
+	<!-- Intro -->
+	
+	<animation>
+		<type>select</type>
+		<object-name>intro</object-name>
+		<condition>
+			<equals>
+				<property>aera500-GPS/page</property>
+				<value>Intro</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>intro</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-cycle</command>
+				<property>aera500-GPS/page</property>
+				<value>Home</value>
+			</binding>
+		</action>
+	</animation>
+	
+	<!-- Navigation Modes -->
+	
+	<animation>
+		<name>HSI arc</name>
+		<type>texrotate</type>
+		<object-name>arc</object-name>
+		<property>orientation/heading-magnetic-deg</property>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>-1</z>
+		</axis>
+		<center>
+			<x>0.5</x>
+			<y>0.5</y>
+		</center>
+	</animation>
+	
+	<!-- Heading Text -->
+
+ <animation>
+   <type>textranslate</type>
+   <object-name>hdgtext</object-name>
+   <property>/orientation/heading-magnetic-deg</property>
+   <factor>0.001</factor>
+   <step>100</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+ <animation>
+   <type>textranslate</type>
+   <object-name>hdgtext.001</object-name>
+   <property>/orientation/heading-magnetic-deg</property>
+   <factor>0.01</factor>
+   <step>10</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+
+ <animation>
+   <type>textranslate</type>
+   <object-name>hdgtext.002</object-name>
+   <property>/orientation/heading-magnetic-deg</property>
+   <factor>0.1</factor>
+   <step>1</step>
+   <axis>
+     <x>0</x>
+     <y>1</y>
+     <z>0</z>
+   </axis>
+ </animation>
+ 
+ <!-- Map Mode Numbers -->
+ 
+	<animation>
+		<type>select</type>
+		<object-name>hdg-tl</object-name>
+		<object-name>gs-tl</object-name>
+		<object-name>next-tl</object-name>
+		<object-name>dist-tl</object-name>
+		<object-name>hdg-tr</object-name>
+		<object-name>gs-tr</object-name>
+		<object-name>next-tr</object-name>
+		<object-name>dist-tr</object-name>
+		<object-name>hdg-bl</object-name>
+		<object-name>gs-bl</object-name>
+		<object-name>next-bl</object-name>
+		<object-name>dist-bl</object-name>
+		<object-name>hdg-br</object-name>
+		<object-name>gs-br</object-name>
+		<object-name>next-br</object-name>
+		<object-name>dist-br</object-name>
+		<condition>
+			<equals>
+				<property>aera500-GPS/page</property>
+				<value>Map</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>hdg-tl</object-name>
+		<condition>
+			<equals>
+				<property>aera500-GPS/numbers/top-left</property>
+				<value>hdg</value>
+			</equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>hdg-tr</object-name>
+		<condition>
+			<equals>
+				<property>aera500-GPS/numbers/top-right</property>
+				<value>hdg</value>
+			</equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>hdg-bl</object-name>
+		<condition>
+			<equals>
+				<property>aera500-GPS/numbers/bottom-left</property>
+				<value>hdg</value>
+			</equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>hdg-br</object-name>
+		<condition>
+			<equals>
+				<property>aera500-GPS/numbers/bottom-right</property>
+				<value>hdg</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>gs-tl</object-name>
+		<condition>
+			<equals>
+				<property>aera500-GPS/numbers/top-left</property>
+				<value>gs</value>
+			</equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>gs-tr</object-name>
+		<condition>
+			<equals>
+				<property>aera500-GPS/numbers/top-right</property>
+				<value>gs</value>
+			</equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>gs-bl</object-name>
+		<condition>
+			<equals>
+				<property>aera500-GPS/numbers/bottom-left</property>
+				<value>gs</value>
+			</equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>gs-br</object-name>
+		<condition>
+			<equals>
+				<property>aera500-GPS/numbers/bottom-right</property>
+				<value>gs</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>next-tl</object-name>
+		<condition>
+			<equals>
+				<property>aera500-GPS/numbers/top-left</property>
+				<value>next</value>
+			</equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>next-tr</object-name>
+		<condition>
+			<equals>
+				<property>aera500-GPS/numbers/top-right</property>
+				<value>next</value>
+			</equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>next-bl</object-name>
+		<condition>
+			<equals>
+				<property>aera500-GPS/numbers/bottom-left</property>
+				<value>next</value>
+			</equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>next-br</object-name>
+		<condition>
+			<equals>
+				<property>aera500-GPS/numbers/bottom-right</property>
+				<value>next</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>dist-tl</object-name>
+		<condition>
+			<equals>
+				<property>aera500-GPS/numbers/top-left</property>
+				<value>dist</value>
+			</equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>dist-tr</object-name>
+		<condition>
+			<equals>
+				<property>aera500-GPS/numbers/top-right</property>
+				<value>dist</value>
+			</equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>dist-bl</object-name>
+		<condition>
+			<equals>
+				<property>aera500-GPS/numbers/bottom-left</property>
+				<value>dist</value>
+			</equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>dist-br</object-name>
+		<condition>
+			<equals>
+				<property>aera500-GPS/numbers/bottom-right</property>
+				<value>dist</value>
+			</equals>
+		</condition>
+	</animation>
+	
+	<!-- Text Illumination -->
+	
+	<animation>
+		<type>material</type>
+		<object-name>time</object-name>
+		<object-name>hdg-tl</object-name>
+		<object-name>gs-tl</object-name>
+		<object-name>next-tl</object-name>
+		<object-name>dist-tl</object-name>
+		<object-name>hdg-tr</object-name>
+		<object-name>gs-tr</object-name>
+		<object-name>next-tr</object-name>
+		<object-name>dist-tr</object-name>
+		<object-name>hdg-bl</object-name>
+		<object-name>gs-bl</object-name>
+		<object-name>next-bl</object-name>
+		<object-name>dist-bl</object-name>
+		<object-name>hdg-br</object-name>
+		<object-name>gs-br</object-name>
+		<object-name>next-br</object-name>
+		<object-name>dist-br</object-name>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+		</emission>
+	</animation>
+	
+	<!-- UTC String -->
+	
+	<text>
+		<name>time</name>
+		<offsets>
+			<x-m>-0.7273</x-m>
+			<y-m>0.0613</y-m>
+			<z-m>0.2344</z-m>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type type="string">text-value</type>
+		<format type="string">%s GMT</format>
+		<property>/sim/time/gmt-string</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">Helvetica.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.004</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	
+	<text>
+		<name>hdg-tl</name>
+		<offsets>
+			<x-m>-0.7273</x-m>
+			<y-m>0.0150</y-m>
+			<z-m>0.2238</z-m>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type type="string">text-value</type>
+		<format type="string">%s</format>
+		<property>/TruTrak/bearing-deg</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">Helvetica.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.007</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>hdg-tr</name>
+		<offsets>
+			<x-m>-0.7273</x-m>
+			<y-m>0.1072</y-m>
+			<z-m>0.2238</z-m>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type type="string">text-value</type>
+		<format type="string">%s</format>
+		<property>/TruTrak/bearing-deg</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">Helvetica.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.007</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>hdg-bl</name>
+		<offsets>
+			<x-m>-0.7273</x-m>
+			<y-m>0.0150</y-m>
+			<z-m>0.1694</z-m>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type type="string">text-value</type>
+		<format type="string">%s</format>
+		<property>/TruTrak/bearing-deg</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">Helvetica.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.007</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>hdg-br</name>
+		<offsets>
+			<x-m>-0.7273</x-m>
+			<y-m>0.1072</y-m>
+			<z-m>0.1694</z-m>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type type="string">text-value</type>
+		<format type="string">%s</format>
+		<property>/TruTrak/bearing-deg</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">Helvetica.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.007</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	
+	<text>
+		<name>gs-tl</name>
+		<offsets>
+			<x-m>-0.7273</x-m>
+			<y-m>0.0150</y-m>
+			<z-m>0.2238</z-m>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type type="string">text-value</type>
+		<format type="string">%s kt</format>
+		<property>/aera500-GPS/numbers/gs-int</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">Helvetica.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.007</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>gs-tr</name>
+		<offsets>
+			<x-m>-0.7273</x-m>
+			<y-m>0.1072</y-m>
+			<z-m>0.2238</z-m>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type type="string">text-value</type>
+		<format type="string">%s kt</format>
+		<property>/aera500-GPS/numbers/gs-int</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">Helvetica.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.007</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>gs-bl</name>
+		<offsets>
+			<x-m>-0.7273</x-m>
+			<y-m>0.0150</y-m>
+			<z-m>0.1694</z-m>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type type="string">text-value</type>
+		<format type="string">%s kt</format>
+		<property>/aera500-GPS/numbers/gs-int</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">Helvetica.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.007</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>gs-br</name>
+		<offsets>
+			<x-m>-0.7273</x-m>
+			<y-m>0.1072</y-m>
+			<z-m>0.1694</z-m>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type type="string">text-value</type>
+		<format type="string">%s kt</format>
+		<property>/aera500-GPS/numbers/gs-int</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">Helvetica.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.007</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	
+	<text>
+		<name>next-tl</name>
+		<offsets>
+			<x-m>-0.7273</x-m>
+			<y-m>0.0150</y-m>
+			<z-m>0.2238</z-m>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type type="string">text-value</type>
+		<format type="string">%s</format>
+		<property>/TruTrak/next-waypoint</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">Helvetica.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.007</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>next-tr</name>
+		<offsets>
+			<x-m>-0.7273</x-m>
+			<y-m>0.1072</y-m>
+			<z-m>0.2238</z-m>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type type="string">text-value</type>
+		<format type="string">%s</format>
+		<property>/TruTrak/next-waypoint</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">Helvetica.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.007</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>next-bl</name>
+		<offsets>
+			<x-m>-0.7273</x-m>
+			<y-m>0.0150</y-m>
+			<z-m>0.1694</z-m>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type type="string">text-value</type>
+		<format type="string">%s</format>
+		<property>/TruTrak/next-waypoint</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">Helvetica.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.007</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>next-br</name>
+		<offsets>
+			<x-m>-0.7273</x-m>
+			<y-m>0.1072</y-m>
+			<z-m>0.1694</z-m>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type type="string">text-value</type>
+		<format type="string">%s</format>
+		<property>/TruTrak/next-waypoint</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">Helvetica.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.007</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	
+	<text>
+		<name>dist-tl</name>
+		<offsets>
+			<x-m>-0.7273</x-m>
+			<y-m>0.0150</y-m>
+			<z-m>0.2238</z-m>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type type="string">text-value</type>
+		<format type="string">%s nm</format>
+		<property>/TruTrak/leg-distance-nm</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">Helvetica.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.007</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>dist-tr</name>
+		<offsets>
+			<x-m>-0.7273</x-m>
+			<y-m>0.1072</y-m>
+			<z-m>0.2238</z-m>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type type="string">text-value</type>
+		<format type="string">%s nm</format>
+		<property>/TruTrak/leg-distance-nm</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">Helvetica.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.007</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>dist-bl</name>
+		<offsets>
+			<x-m>-0.7273</x-m>
+			<y-m>0.0150</y-m>
+			<z-m>0.1694</z-m>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type type="string">text-value</type>
+		<format type="string">%s nm</format>
+		<property>/TruTrak/leg-distance-nm</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">Helvetica.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.007</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	<text>
+		<name>dist-br</name>
+		<offsets>
+			<x-m>-0.7273</x-m>
+			<y-m>0.1072</y-m>
+			<z-m>0.1694</z-m>
+		</offsets>
+		<alignment>center-center</alignment>
+		<axis-alignment>yz-plane</axis-alignment>
+		<type type="string">text-value</type>
+		<format type="string">%s nm</format>
+		<property>/TruTrak/leg-distance-nm</property>
+		<truncate type="bool">false</truncate>
+		<font type="string">Helvetica.txf</font>
+		<draw-text type="bool">true</draw-text>
+		<draw-alignment type="bool">false</draw-alignment>
+		<draw-boundingbox type="bool">false</draw-boundingbox>
+		<character-size>0.007</character-size>
+		<font-resolution>
+			<width type="int">32</width>
+			<height type="int">32</height>
+		</font-resolution>
+	</text>
+	
+</PropertyList>

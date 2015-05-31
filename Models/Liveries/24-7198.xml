@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<sim>    
+  <model>        
+    <livery>
+      <name type="string">24-7198</name>
+      <texture-main>24-7198-main.png</texture-main>
+      <texture-wings>texture_wings_blank.png</texture-wings>
+    </livery>
+  </model>
+</sim>
+
+</PropertyList>

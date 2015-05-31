@@ -1,0 +1,23 @@
+AC3Db
+MATERIAL "ac3dmat1" rgb 1 1 1  amb 1 1 1  emis 1 1 1  spec 1 1 1  shi 128  trans 0
+OBJECT world
+kids 1
+OBJECT poly
+name "rect"
+loc -0.728068 0.190183 0.213711
+texture "horizon.png"
+crease 45.000000
+numvert 4
+4.17233e-07 -0.073022 -0.113456
+-4.17233e-07 -0.073022 0.113456
+-4.17233e-07 0.073022 0.113456
+4.17233e-07 0.073022 -0.113456
+numsurf 1
+SURF 0x10
+mat 0
+refs 4
+3 0.801299 0.706622
+2 0.186282 0.706622
+1 0.186282 0.294096
+0 0.801299 0.294096
+kids 0

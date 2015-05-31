@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<PropertyList>
+
+	<sim>
+		<description>Jabiru-j170 Copilot</description>
+		<!-- flight-model>jsb</flight-model>
+		<aero>Jabiru-j170</aero>
+		<authors>Narendran Muraleedharan, Sam Clancy</authors>
+		<engine>jabiru_2200</engine -->
+		<flight-model>null</flight-model>
+		<aero>Jabiru-j170-Instructor</aero>
+
+		<model>
+			<path>Aircraft/Jabiru-j170/Models/j170-copilot.xml</path>
+		</model>
+
+		<startup>
+			<splash-texture>Aircraft/Jabiru-j170/splash.png</splash-texture>
+		</startup>
+	
+		<chase-distance-m>-40</chase-distance-m>
+
+		<sound>
+			<path>Aircraft/Jabiru-j170/j170-sound.xml</path>
+		</sound>
+        
+	<view n="0">
+		<name>Instructor View</name>
+		<type>lookfrom</type>
+		<internal type="bool">true</internal>
+		<cockpit type="bool">1</cockpit>
+		<config>
+			<from-model type="bool">true</from-model>
+			<from-model-idx type="int">0</from-model-idx>
+			<ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
+			<default-field-of-view-deg type="double">60.0</default-field-of-view-deg>
+			<default-pitch-deg type="double">0</default-pitch-deg>
+			<default-heading-deg type="double">0</default-heading-deg>
+			<front-direction-deg type="double">0</front-direction-deg>
+			<front-left-direction-deg type="double">45</front-left-direction-deg>
+			<left-direction-deg type="double">90</left-direction-deg>
+			<back-left-direction-deg type="double">135</back-left-direction-deg>
+			<back-direction-deg type="double">180</back-direction-deg>
+			<back-right-direction-deg type="double">225</back-right-direction-deg>
+			<right-direction-deg type="double">270</right-direction-deg>
+			<front-right-direction-deg type="double">315</front-right-direction-deg>
+			<x-offset-m type="double">0.2108</x-offset-m>
+			<y-offset-m type="double">0.3882</y-offset-m>
+			<z-offset-m type="double">-0.1223</z-offset-m>
+			<pitch-offset-deg>-3</pitch-offset-deg>
+		</config>
+		<dynamic>
+			<enabled type="bool" userarchive="y">false</enabled>
+		</dynamic>
+	</view>
+
+	<view n="1">
+		<internal type="bool">0</internal>
+		<cockpit type="bool">0</cockpit>
+	</view>
+
+	<view n="2">
+		<internal type="bool">0</internal>
+		<cockpit type="bool">0</cockpit>
+	</view>
+
+	<view n="3">
+		<internal type="bool">0</internal>
+		<cockpit type="bool">0</cockpit>
+	</view>
+
+	<view n="4">
+		<internal type="bool">0</internal>
+		<cockpit type="bool">0</cockpit>
+	</view>
+
+	<view n="5">
+		<internal type="bool">0</internal>
+		<cockpit type="bool">0</cockpit>
+	</view>
+
+	<view n="6">
+		<internal type="bool">0</internal>
+		<cockpit type="bool">0</cockpit>
+		<config>
+			<z-offset-m archive="y" type="double">125.0</z-offset-m>
+		</config>
+	</view>
+
+	<view n="100">
+		<name>Pilot View</name>
+		<type>lookfrom</type>
+		<internal type="bool">true</internal>
+		<cockpit type="bool">true</cockpit>
+		<config>
+			<x-offset-m type="double">-0.2108</x-offset-m>
+			<y-offset-m type="double">0.3882</y-offset-m>
+			<z-offset-m type="double">-0.1223</z-offset-m>
+			<pitch-offset-deg>-3</pitch-offset-deg>
+			<default-field-of-view-deg type="double">60.0</default-field-of-view-deg>
+		</config>
+	</view>
+
+		<menubar>
+			<default>
+                <menu n="3">
+                    <item n="0">
+                    <label>Autopilot Dialog</label>
+                    <enabled type="bool">false</enabled>
+                        <binding>
+							<command>nasal</command>
+							<script>
+							<!-- Disabled -->
+							</script>
+                        </binding>
+                    </item>
+                </menu>
+				<menu n="100">
+					<label>Jabiru J-170</label>
+					<enabled type="bool">true</enabled>
+					<item>
+						<label>Select Livery</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+							 aircraft.livery.dialog.open()
+							</script>
+						</binding>
+					</item>
+					<item>
+						<label>Dual Control Menu</label>
+						<binding>
+							<command>nasal</command>
+							<script>
+								var dual = gui.Dialog.new("sim/gui/dialogs/dual/dialog", "Aircraft/Jabiru-j170/Systems/dual_ctrl_instructor.xml");
+								dual.open();
+							</script>
+						</binding>
+					</item>
+				</menu>
+			</default>
+		</menubar>
+
+
+		<help>
+			<title>Jabiru J-170</title>
+			<key>
+				<name>w</name>
+				<desc>walk forward toward view direction</desc>
+			</key>
+			<key>
+				<name>W</name>
+				<desc>run forward toward view direction</desc>
+			</key>
+			<key>
+				<name>s</name>
+				<desc>walk backward from view direction</desc>
+			</key>
+		</help>
+
+<!-- MP Enabled Properties for Dual Control -->
+
+    <multiplay>
+        <generic>            
+            <float n="0" alias="/controls/flight/aileron"/>
+            <float n="1" alias="/controls/flight/elevator"/>
+            <float n="2" alias="/controls/flight/rudder"/>
+            <float n="3" alias="/dualcontrol/controls/throttle"/>
+            
+            <int n="0" alias="/dualcontrol/transmit/engine-starter" />
+            <int n="1" alias="/dualcontrol/transmit/master" />
+            <int n="2" alias="/dualcontrol/transmit/carb-choke" />
+            <int n="3" alias="/dualcontrol/transmit/carb-heat" />
+            <int n="4" alias="/dualcontrol/transmit/mag0" />
+            <int n="5" alias="/dualcontrol/transmit/mag1" />
+            <int n="6" alias="/dualcontrol/transmit/fuel-pump" />
+            <int n="7" alias="/dualcontrol/transmit/avionics" />
+            <int n="8" alias="/dualcontrol/transmit/landing" />
+            <int n="9" alias="/dualcontrol/transmit/strobe" />
+            <int n="10" alias="/dualcontrol/transmit/flaps" />
+        </generic>
+    </multiplay>
+    
+    <tutorials>
+		<tutorial include="Tutorials/power_on_stall.xml"/>
+	</tutorials>
+
+	</sim>
+	
+	<dualcontrol>
+		<role type="string">instructor</role>
+	</dualcontrol>
+
+	<consumables>
+		<fuel>
+			<tank>
+				<name>Fuel Tank</name>
+			</tank>
+		</fuel>
+	</consumables>
+
+	<payload>
+
+	<weight n="0">
+		<name>Pilot</name>
+		<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[0]">100</weight-lb>
+		<max-lb>180</max-lb>
+		<min-lb>80</min-lb>
+	</weight>
+
+	<weight n="1">
+		<name>Instructor</name>
+		<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[1]">100</weight-lb>
+		<max-lb>180</max-lb>
+		<min-lb>0</min-lb>
+	</weight>
+
+	<weight n="2">
+		<name>Baggage</name>
+		<weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[2]">6400</weight-lb>
+		<max-lb>362</max-lb>
+		<min-lb>0</min-lb>
+	</weight>
+	</payload>
+	
+	<controls>
+		<options>
+			<cockpit type="string">c</cockpit>
+		</options>
+	</controls>
+
+	<switches>
+		<fuel-pump type="int">0</fuel-pump>
+		<magneto n="0">
+			<master type="int">0</master>
+		</magneto>
+		<magneto n="1">
+			<master type="int">0</master>
+		</magneto>
+		<electric>
+			<master type="int">0</master>
+		</electric>
+		<avionics type="int">1</avionics>
+		<engine>
+			<starter type="int">0</starter>
+		</engine>
+		<gear>
+			<brake-parking type="bool">true</brake-parking>
+		</gear>
+		<strobe type="int">0</strobe>
+		<landing type="int">0</landing>
+		<circuit-breakers>
+			<strobe type="int">0</strobe>
+			<landing type="int">0</landing>
+			<avionics type="int">0</avionics>
+			<fuel-pump type="int">0</fuel-pump>
+			<elec-flaps type="int">0</elec-flaps>
+		</circuit-breakers>
+		<carb-heat type="int">0</carb-heat>
+		<carb-choke type="int">0</carb-choke>
+	</switches>
+	
+	<systems>
+		<electrical>
+			<path></path> <!-- Disable FG's Generic Electrical -->
+		</electrical>
+		<electric>
+			<charge type="bool">2</charge>
+			<alternator type="bool">true</alternator>	
+		</electric>
+		<lighting>
+			<strobe type="bool">false</strobe>
+		</lighting>
+	</systems>
+
+	<input>
+		<keyboard>
+			<key n="119">
+				<name>w</name>
+				<desc>Walk forward toward view</desc>
+				<repeatable type="bool">true</repeatable>
+				<binding>
+					<command>nasal</command>
+					<script>
+					 walk.walk_about(0.1);
+					</script>
+				</binding>
+			</key>
+			<key n="87">
+				<name>W</name>
+				<desc>Run forward toward view</desc>
+				<repeatable type="bool">true</repeatable>
+				<binding>
+					<command>nasal</command>
+					<script>
+					 walk.walk_about(0.25);
+					</script>
+				</binding>
+			</key>
+			<key n="115">
+				<name>s</name>
+				<desc>Walk backward from view</desc>
+				<repeatable type="bool">true</repeatable>
+				<binding>
+					<command>nasal</command>
+					<script>
+					 walk.walk_about(-0.1);
+					</script>
+				</binding>
+			</key>
+			<key n="357">
+				<name>Up</name>
+				<repeatable type="bool">true</repeatable>
+				  <mod-alt>
+				   <desc>Tilt View Up</desc>
+				   <binding>
+					<command>nasal</command>
+					<script>
+						setprop("/sim/current-view/pitch-offset-deg", getprop("/sim/current-view/pitch-offset-deg") + 1);
+					</script>
+				   </binding>
+				  </mod-alt>
+			</key>
+			<key n="359">
+				<name>Down</name>
+				<repeatable type="bool">true</repeatable>
+				  <mod-alt>
+				   <desc>Tilt View Down</desc>
+				   <binding>
+					<command>nasal</command>
+					<script>
+						setprop("/sim/current-view/pitch-offset-deg", getprop("/sim/current-view/pitch-offset-deg") - 1);
+					</script>
+				   </binding>
+				  </mod-alt>
+			</key>
+			<key n="356">
+				<name>Left</name>
+				<repeatable type="bool">true</repeatable>
+				  <mod-alt>
+				   <desc>Pan View Left</desc>
+				   <binding>
+					<command>nasal</command>
+					<script>
+						setprop("/sim/current-view/heading-offset-deg", getprop("/sim/current-view/heading-offset-deg") + 1);
+					</script>
+				   </binding>
+				  </mod-alt>
+			</key>
+			<key n="358">
+				<name>Right</name>
+				<repeatable type="bool">true</repeatable>
+				  <mod-alt>
+				   <desc>Pan View Right</desc>
+				   <binding>
+					<command>nasal</command>
+					<script>
+						setprop("/sim/current-view/heading-offset-deg", getprop("/sim/current-view/heading-offset-deg") - 1);
+					</script>
+				   </binding>
+				  </mod-alt>
+			</key>
+		</keyboard>
+	</input>
+
+	<nasal>
+		<walk>
+			<file>Aircraft/Jabiru-j170/Nasal/walk.nas</file>
+		</walk>
+		<dual>
+			<file>Aircraft/Jabiru-j170/Nasal/dual_control_instructor.nas</file>
+		</dual>
+		<garmin>
+			<file>Aircraft/Jabiru-j170/Nasal/garmin/aera500-GPS.nas</file>
+			<file>Aircraft/Jabiru-j170/Nasal/garmin/terrain_map.nas</file>
+			<file>Aircraft/Jabiru-j170/Nasal/garmin/vertical_profile.nas</file>
+		</garmin>
+		<dynon>
+			<file>Aircraft/Jabiru-j170/Nasal/dynon/skyview-D1000.nas</file>
+		</dynon>
+		<helper>
+			<file>Aircraft/Jabiru-j170/Helpers/gps-terrain.nas</file>
+		</helper>
+	</nasal>
+
+</PropertyList>

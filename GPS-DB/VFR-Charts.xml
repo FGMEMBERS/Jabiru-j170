@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<VFR-Charts>
+
+	<KLAX>
+		<path>VFR-Charts/LAX-area.jpg</path>
+		<point-1>
+			<latitude-deg>33.937872</latitude-deg>
+			<longitude-deg>-118.399620</longitude-deg>
+			<image-x-norm>0.461181641</image-x-norm>
+			<image-y-norm>0.387207031</image-y-norm>
+		</point-1>
+		<point-2>
+			<latitude-deg>34.119453</latitude-deg>
+			<longitude-deg>-119.121796</longitude-deg>
+			<image-x-norm>0.250854075</image-x-norm>
+			<image-y-norm>0.27734375</image-y-norm>
+		</point-2>
+	</KLAX>
+
+</VFR-Charts>
+
+</PropertyList>

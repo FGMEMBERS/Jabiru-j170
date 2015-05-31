@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<piston_engine name="jabiru_2200">
+  <minmp unit="INHG">         8.3  </minmp>
+  <maxmp unit="INHG">        28.5  </maxmp>	
+  <displacement unit="IN3"> 134.0  </displacement>
+  <stroke unit="IN">        2.913  </stroke>
+  <compression-ratio>           8  </compression-ratio>
+  <bsfc unit="LBS/HP*HR">    0.51  </bsfc>
+  <maxhp>                    85.0  </maxhp>	
+  <cycles>                    4.0  </cycles>
+  <idlerpm>                 700.0  </idlerpm>
+  <maxrpm>                 3300.0  </maxrpm>
+  <maxthrottle>               1.0  </maxthrottle>
+  <minthrottle>               0.1  </minthrottle>
+  <sparkfaildrop>             0.1  </sparkfaildrop>
+</piston_engine>
+

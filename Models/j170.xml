@@ -1,0 +1,834 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+	<path>j170.ac</path>
+	
+	<!-- Cockpit Model -->
+	
+	<model>
+		<name>Cockpit Option C</name>
+		<path>Aircraft/Jabiru-j170/Models/Cockpit_Option-C/cockpit.xml</path>
+		<condition>
+			<equals>
+				<property>/controls/options/cockpit</property>
+				<value>c</value>
+			</equals>
+			<equals>
+				<property>/dualcontrol/role</property>
+				<value>pilot</value>
+			</equals>
+		</condition>
+	</model>
+	
+	<!-- Brakes Lever Animation -->
+	
+	<animation>
+		<name>Brakes Lever</name>
+		<type>rotate</type>
+		<object-name>brakes</object-name>
+		<property>controls/gear/brake-left</property>
+		<factor>-40</factor>
+		<axis>
+			<x1-m>-0.4169</x1-m>
+			<y1-m>0</y1-m>
+			<z1-m>-0.0270</z1-m>
+			<x2-m>-0.4169</x2-m>
+			<y2-m>1</y2-m>
+			<z2-m>-0.0270</z2-m>
+		</axis>
+	</animation>
+	
+	<!-- Rudder Pedal Animation -->
+	
+	<animation>
+		<name>Left Rudder Pedal</name>
+		<type>translate</type>
+		<object-name>pedal.left</object-name>
+		<object-name>pedal.spring.left</object-name>
+		<property>/controls/flight/rudder</property>
+		<factor>-0.02</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<name>Left Rudder Pedal</name>
+		<type>translate</type>
+		<object-name>pedal.right</object-name>
+		<object-name>pedal.spring.right</object-name>
+		<property>/controls/flight/rudder</property>
+		<factor>0.02</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<!-- Control Stick Animation -->
+	
+	<animation>
+		<name>Control Stick Main Roll</name>
+		<type>rotate</type>
+		<object-name>stick.main</object-name>
+		<object-name>stick.handle</object-name>
+		<object-name>stick.axis</object-name>
+		<object-name>stick.rod</object-name>
+		<property>/controls/flight/aileron</property>
+		<factor>-30</factor>
+		<axis>
+			<x1-m>0</x1-m>
+			<y1-m>0.0011</y1-m>
+			<z1-m>0.0309</z1-m>
+			<x2-m>1</x2-m>
+			<y2-m>0.0011</y2-m>
+			<z2-m>0.0309</z2-m>
+		</axis>
+	</animation>
+	
+	<animation>
+		<name>Control Stick Main Pitch</name>
+		<type>rotate</type>
+		<object-name>stick.main</object-name>
+		<object-name>stick.handle</object-name>
+		<property>/controls/flight/elevator</property>
+		<factor>-30</factor>
+		<axis>
+			<x1-m>-0.2808</x1-m>
+			<y1-m>0</y1-m>
+			<z1-m>0.0309</z1-m>
+			<x2-m>-0.2808</x2-m>
+			<y2-m>1</y2-m>
+			<z2-m>0.0309</z2-m>
+		</axis>
+	</animation>
+	
+	<animation>
+		<name>Control Stick Rod Translate</name>
+		<type>translate</type>
+		<object-name>stick.rod</object-name>
+		<property>/controls/flight/elevator</property>
+		<factor>0.012</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<!-- Livery Selection -->
+	
+	<animation>
+        <type>material</type>
+        <object-name>fuselage</object-name>
+        <object-name>VStab</object-name>
+        <object-name>VStab_1</object-name>
+        <object-name>rudder</object-name>
+        <property-base>sim/model/livery</property-base>
+        <texture-prop>texture-main</texture-prop>
+        <texture>LN-YNC-main.png</texture>
+    </animation>
+    
+    <animation>
+        <type>material</type>
+        <object-name>elevator</object-name>
+        <object-name>HStab</object-name>
+        <object-name>wing_frame_l</object-name>
+        <object-name>wing_frame_r</object-name>
+        <object-name>aileron_l</object-name>
+        <object-name>aileron_r</object-name>
+        <object-name>flap_l</object-name>
+        <object-name>flap_r</object-name>
+        <property-base>sim/model/livery</property-base>
+        <texture-prop>texture-wings</texture-prop>
+        <texture>LN-YNC-wings.png</texture>
+    </animation>
+	
+	<!-- Propellor Spin -->
+	
+	<animation>
+		<type>spin</type>
+		<object-name>propellor_blades</object-name>
+		<object-name>propellor_fast</object-name>
+		<property>engines/engine/rpm</property>
+		<factor>-0.5</factor>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-0.0024</y-m>
+			<z-m>0.1118</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>propellor_blades</object-name>
+		<condition>
+			<less-than-equals>
+				<property>engines/engine/rpm</property>
+				<value>1000</value>
+			</less-than-equals>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>propellor_fast</object-name>
+		<condition>
+			<greater-than>
+				<property>engines/engine/rpm</property>
+				<value>1000</value>
+			</greater-than>
+		</condition>
+	</animation>
+	
+	<!-- Glass Shader -->
+	
+	<animation>
+		<type>shader</type>
+		<shader>chrome</shader>
+		<texture>glass_shader.png</texture>
+		<object-name>glass</object-name>
+	</animation>
+	
+	<!-- Flight Control Surface Animation -->
+	
+	<!-- Ailerons -->
+	
+	<animation>
+		<name>Left Aileron</name>
+		<type>rotate</type>
+		<object-name>aileron_l</object-name>
+		<property>/fdm/jsbsim/fcs/aileron-pos-output</property>
+		<factor>18</factor>
+		<axis>
+			<x1-m>0.2642</x1-m>
+			<y1-m>-4.2066</y1-m>
+			<z1-m>0.6961</z1-m>
+			<x2-m>0.2642</x2-m>
+			<y2-m>-2.5061</y2-m>
+			<z2-m>0.6409</z2-m>
+		</axis>
+	</animation>
+	
+	<animation>
+		<name>Right Aileron</name>
+		<type>rotate</type>
+		<object-name>aileron_r</object-name>
+		<property>/fdm/jsbsim/fcs/aileron-pos-output</property>
+		<factor>18</factor>
+		<axis>
+			<x1-m>0.2642</x1-m>
+			<y1-m>4.2066</y1-m>
+			<z1-m>0.6961</z1-m>
+			<x2-m>0.2642</x2-m>
+			<y2-m>2.5061</y2-m>
+			<z2-m>0.6409</z2-m>
+		</axis>
+	</animation>
+	
+	<!-- Cables -->
+	
+	<animation>
+		<name>Left Aileron Cable (Down) Rotate</name>
+		<type>rotate</type>
+		<object-name>aileron_l_cable_down</object-name>
+		<property>/fdm/jsbsim/fcs/aileron-pos-output</property>
+		<interpolation>
+			<entry>
+			  <ind>-1.0</ind>
+			  <dep>2</dep>
+			</entry>
+			<entry>
+			  <ind>0.0</ind>
+			  <dep>0.0</dep>
+			</entry>
+			<entry>
+			  <ind>1.0</ind>
+			  <dep>-6</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x1-m>0.1053</x1-m>
+			<y1-m>-3.3672</y1-m>
+			<z1-m>0.6211</z1-m>
+			<x2-m>0.1053</x2-m>
+			<y2-m>-3.3604</y2-m>
+			<z2-m>0.6208</z2-m>
+		</axis>
+	</animation>
+	
+	<animation>
+		<name>Left Aileron Cable (Down) Translate</name>
+		<type>translate</type>
+		<object-name>aileron_l_cable_down</object-name>
+		<property>/fdm/jsbsim/fcs/aileron-pos-output</property>
+		<factor>-0.024</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>-0.2</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<name>Right Aileron Cable (Down) Rotate</name>
+		<type>rotate</type>
+		<object-name>aileron_r_cable_down</object-name>
+		<property>/fdm/jsbsim/fcs/aileron-pos-output</property>
+		<interpolation>
+			<entry>
+			  <ind>-1.0</ind>
+			  <dep>6</dep>
+			</entry>
+			<entry>
+			  <ind>0.0</ind>
+			  <dep>0.0</dep>
+			</entry>
+			<entry>
+			  <ind>1.0</ind>
+			  <dep>-2</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x1-m>0.1053</x1-m>
+			<y1-m>3.3672</y1-m>
+			<z1-m>0.6211</z1-m>
+			<x2-m>0.1053</x2-m>
+			<y2-m>3.3604</y2-m>
+			<z2-m>0.6208</z2-m>
+		</axis>
+	</animation>
+	
+	<animation>
+		<name>Right Aileron Cable (Down) Translate</name>
+		<type>translate</type>
+		<object-name>aileron_r_cable_down</object-name>
+		<property>/fdm/jsbsim/fcs/aileron-pos-output</property>
+		<factor>0.024</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>-0.2</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<name>Left Aileron Cable (Up) Rotate</name>
+		<type>rotate</type>
+		<object-name>aileron_l_cable_up</object-name>
+		<property>/fdm/jsbsim/fcs/aileron-pos-output</property>
+		<interpolation>
+			<entry>
+			  <ind>-1.0</ind>
+			  <dep>6</dep>
+			</entry>
+			<entry>
+			  <ind>0.0</ind>
+			  <dep>0.0</dep>
+			</entry>
+			<entry>
+			  <ind>1.0</ind>
+			  <dep>-2</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x1-m>0.1173</x1-m>
+			<y1-m>-2.8689</y1-m>
+			<z1-m>0.7014</z1-m>
+			<x2-m>0.1173</x2-m>
+			<y2-m>-2.8649</y2-m>
+			<z2-m>0.7010</z2-m>
+		</axis>
+	</animation>
+	
+	<animation>
+		<name>Left Aileron Cable (Up) Translate</name>
+		<type>translate</type>
+		<object-name>aileron_l_cable_up</object-name>
+		<property>/fdm/jsbsim/fcs/aileron-pos-output</property>
+		<factor>0.024</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0.15</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<name>Right Aileron Cable (Up) Rotate</name>
+		<type>rotate</type>
+		<object-name>aileron_r_cable_up</object-name>
+		<property>/fdm/jsbsim/fcs/aileron-pos-output</property>
+		<interpolation>
+			<entry>
+			  <ind>-1.0</ind>
+			  <dep>2</dep>
+			</entry>
+			<entry>
+			  <ind>0.0</ind>
+			  <dep>0.0</dep>
+			</entry>
+			<entry>
+			  <ind>1.0</ind>
+			  <dep>-6</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x1-m>0.1173</x1-m>
+			<y1-m>2.8689</y1-m>
+			<z1-m>0.7014</z1-m>
+			<x2-m>0.1173</x2-m>
+			<y2-m>2.8649</y2-m>
+			<z2-m>0.7010</z2-m>
+		</axis>
+	</animation>
+	
+	<animation>
+		<name>Right Aileron Cable (Up) Translate</name>
+		<type>translate</type>
+		<object-name>aileron_r_cable_up</object-name>
+		<property>/fdm/jsbsim/fcs/aileron-pos-output</property>
+		<factor>-0.024</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0.15</z>
+		</axis>
+	</animation>
+	
+	<!-- Elevator -->
+	
+	<animation>
+		<name>Elevator</name>
+		<type>rotate</type>
+		<object-name>elevator</object-name>
+		<property>/fdm/jsbsim/fcs/elevator-pos-output</property>
+		<factor>20</factor>
+		<axis>
+			<x1-m>3.4267</x1-m>
+			<y1-m>-1</y1-m>
+			<z1-m>0.1112</z1-m>
+			<x2-m>3.4267</x2-m>
+			<y2-m>1</y2-m>
+			<z2-m>0.1112</z2-m>
+		</axis>
+	</animation>
+	
+	<!-- Rudder -->
+	
+	<animation>
+		<name>Rudder</name>
+		<type>rotate</type>
+		<object-name>rudder</object-name>
+		<property>/fdm/jsbsim/fcs/rudder-pos-output</property>
+		<factor>20</factor>
+		<axis>
+			<x1-m>3.0310</x1-m>
+			<y1-m>0</y1-m>
+			<z1-m>0.2247</z1-m>
+			<x2-m>3.4426</x2-m>
+			<y2-m>0</y2-m>
+			<z2-m>1.1688</z2-m>
+		</axis>
+	</animation>
+	
+	<animation>
+		<name>NoseGear</name>
+		<type>rotate</type>
+		<object-name>ngear_rotate</object-name>
+		<property>/fdm/jsbsim/fcs/rudder-pos-output</property>
+		<factor>60</factor>
+		<center>
+			<x-m>-1.1088</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>-1</z>
+		</axis>		
+	</animation>
+	
+	<!-- Flaps -->
+	
+	<animation>
+		<name>Left Flap</name>
+		<type>rotate</type>
+		<object-name>flap_l</object-name>
+		<property>/fdm/jsbsim/fcs/flap-pos-norm</property>
+		<factor>18</factor>
+		<axis>
+			<x1-m>0.2975</x1-m>
+			<y1-m>-2.4127</y1-m>
+			<z1-m>0.5363</z1-m>
+			<x2-m>0.2975</x2-m>
+			<y2-m>-0.5336</y2-m>
+			<z2-m>0.4708</z2-m>
+		</axis>
+	</animation>
+	
+	<animation>
+		<name>Left Flap</name>
+		<type>rotate</type>
+		<object-name>flap_r</object-name>
+		<property>/fdm/jsbsim/fcs/flap-pos-norm</property>
+		<factor>-18</factor>
+		<axis>
+			<x1-m>0.2975</x1-m>
+			<y1-m>2.4127</y1-m>
+			<z1-m>0.5363</z1-m>
+			<x2-m>0.2975</x2-m>
+			<y2-m>0.5336</y2-m>
+			<z2-m>0.4708</z2-m>
+		</axis>
+	</animation>
+	
+	<!-- Under-carraige Animations -->
+	
+	<!-- Nose Gear Compression -->
+	
+	<animation>
+		<name>Nose Gear Compression Rotate 1</name>
+		<type>rotate</type>
+		<object-name>gear_nose_strut</object-name>
+		<object-name>wheel_nose</object-name>
+		<object-name>cover_nose</object-name>
+		<object-name>gear_nose_compressor</object-name>
+		<property>/fdm/jsbsim/gear/unit/compression-ft</property>
+		<interpolation>
+		<entry>
+			  <ind>0</ind>
+			  <dep>0.0</dep>
+			</entry>
+			<entry>
+			  <ind>0.5</ind>
+			  <dep>70</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-1.0978</x-m>
+			<y-m>0</y-m>
+			<z-m>-0.3986</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<name>Nose Gear Compression Rotate 2</name>
+		<type>rotate</type>
+		<object-name>wheel_nose</object-name>
+		<object-name>cover_nose</object-name>
+		<object-name>gear_nose_compressor</object-name>
+		<property>/fdm/jsbsim/gear/unit/compression-ft</property>
+		<interpolation>
+		<entry>
+			  <ind>0</ind>
+			  <dep>0.0</dep>
+			</entry>
+			<entry>
+			  <ind>0.5</ind>
+			  <dep>70</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-1.1811</x-m>
+			<y-m>0</y-m>
+			<z-m>-0.5372</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<name>Nose Gear Compression Rotate 3</name>
+		<type>rotate</type>
+		<object-name>gear_nose_compressor</object-name>
+		<property>/fdm/jsbsim/gear/unit/compression-ft</property>
+		<interpolation>
+		<entry>
+			  <ind>0</ind>
+			  <dep>0.0</dep>
+			</entry>
+			<entry>
+			  <ind>0.5</ind>
+			  <dep>80</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-1.1341</x-m>
+			<y-m>0</y-m>
+			<z-m>-0.5297</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<name>Nose Gear Compression Rotate 4</name>
+		<type>rotate</type>
+		<object-name>gear_nose_strut_rear</object-name>
+		<property>/fdm/jsbsim/gear/unit/compression-ft</property>
+		<interpolation>
+		<entry>
+			  <ind>0</ind>
+			  <dep>0.0</dep>
+			</entry>
+			<entry>
+			  <ind>0.5</ind>
+			  <dep>80</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>-1.0837</x-m>
+			<y-m>0</y-m>
+			<z-m>-0.3998</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<name>Left Gear Compression Rotate</name>
+		<type>rotate</type>
+		<object-name>gear_left_support</object-name>
+		<object-name>wheel_left</object-name>
+		<property>/fdm/jsbsim/gear/unit[1]/compression-ft</property>
+		<interpolation>
+		<entry>
+			  <ind>0.01</ind>
+			  <dep>0.0</dep>
+			</entry>
+			<entry>
+			  <ind>0.3</ind>
+			  <dep>15</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-0.3929</y-m>
+			<z-m>-0.3081</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<name>Left Gear Compression Rotate</name>
+		<type>rotate</type>
+		<object-name>gear_right_support</object-name>
+		<object-name>wheel_right</object-name>
+		<property>/fdm/jsbsim/gear/unit[2]/compression-ft</property>
+		<interpolation>
+		<entry>
+			  <ind>0.01</ind>
+			  <dep>0.0</dep>
+			</entry>
+			<entry>
+			  <ind>0.3</ind>
+			  <dep>15</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0.3929</y-m>
+			<z-m>-0.3081</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<type>spin</type>
+		<object-name>wheel_nose</object-name>
+		<property>gear/gear/rollspeed-ms</property>
+		<factor>10</factor>
+		<center>
+			<x-m>-1.0633</x-m>
+			<y-m>0</y-m>
+			<z-m>-0.7034</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>spin</type>
+		<object-name>wheel_left</object-name>
+		<property>gear/gear[1]/rollspeed-ms</property>
+		<factor>10</factor>
+		<center>
+			<x-m>-0.0335</x-m>
+			<y-m>0</y-m>
+			<z-m>-0.6785</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>spin</type>
+		<object-name>wheel_right</object-name>
+		<property>gear/gear[2]/rollspeed-ms</property>
+		<factor>10</factor>
+		<center>
+			<x-m>-0.0335</x-m>
+			<y-m>0</y-m>
+			<z-m>-0.6785</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<!-- Landing Lights -->
+	
+	<animation>
+		<type>flash</type>
+		<object-name>landing_light_L</object-name>
+		<center>
+			 <x-m>-0.1904</x-m>
+			 <y-m>-1.4740</y-m>
+			 <z-m>0.2681</z-m>
+		</center>
+		<axis>
+			 <x>-1</x>
+			 <y>0</y>
+			 <z>0</z>
+		</axis>
+		<power>0.5</power>
+		<factor>1</factor>
+		<offset>0</offset>
+		<two-sides type="bool">false</two-sides>
+		<min>0.01</min>
+		<max>1</max>
+	</animation>
+	
+	<animation>
+		<type>flash</type>
+		<object-name>landing_light_R</object-name>
+		<center>
+			 <x-m>-0.1904</x-m>
+			 <y-m>1.4907</y-m>
+			 <z-m>0.2681</z-m>
+		</center>
+		<axis>
+			 <x>-1</x>
+			 <y>0</y>
+			 <z>0</z>
+		</axis>
+		<power>0.5</power>
+		<factor>1</factor>
+		<offset>0</offset>
+		<two-sides type="bool">false</two-sides>
+		<min>0.01</min>
+		<max>1</max>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>landing_light_L</object-name>		
+		<object-name>landing_light_R</object-name>
+		<object-name>landing_light</object-name>
+		<condition>
+			<property>/lighting/landing</property>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>strobe_light</object-name>
+		<condition>
+			<property>/lighting/strobe-state</property>
+		</condition>
+	</animation>
+	
+	<model>
+		<path>Aircraft/Jabiru-j170/Models/Lighting/strobe.xml</path>
+		<offsets>
+			<x-m>3.2199</x-m>
+			<y-m>0.0000</y-m>
+			<z-m>1.3271</z-m>
+		</offsets>
+	</model>
+	
+	<!-- Lightmaps -->
+	
+	<effect>
+		<inherits-from>Effects/lightmap</inherits-from>
+		<parameters>
+			<texture n="1">
+				<image>Aircraft/Jabiru-j170/Models/Lighting/landing-lightmap-main.png</image>
+			</texture>
+			<condition>
+				<use>lighting/landing</use>
+			</condition>
+		</parameters>
+		<object-name>fuselage</object-name>
+	</effect>
+	
+	<effect>
+		<inherits-from>Effects/lightmap</inherits-from>
+		<parameters>
+			<texture n="1">
+				<image>Aircraft/Jabiru-j170/Models/Lighting/landing-lightmap-wings.png</image>
+			</texture>
+			<condition>
+				<use>lighting/landing</use>
+			</condition>
+		</parameters>
+		<object-name>wing_frame_l</object-name>
+		<object-name>wing_frame_r</object-name>
+	</effect>
+	
+	<effect>
+		<inherits-from>Effects/lightmap</inherits-from>
+		<parameters>
+			<texture n="1">
+				<image>Aircraft/Jabiru-j170/Models/Lighting/strobe-lightmap-main.png</image>
+			</texture>
+			<condition>
+				<use>lighting/strobe-state</use>
+			</condition>
+		</parameters>
+		<object-name>VStab</object-name>
+		<object-name>rudder</object-name>
+	</effect>
+
+</PropertyList>

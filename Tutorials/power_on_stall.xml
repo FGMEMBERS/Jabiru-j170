@@ -1,0 +1,758 @@
+<PropertyList>
+		<name>Power-on Stall Recovery</name>
+		<description>
+		A power-on stall simulates a stall on takeoff.  Even with full power applied, the plane will NOT be able to 
+		continue climbing with the yoke pulled all the way into your lap, and the plane will stall.
+		
+		You will take off from KEFD (one of VSA's flight training airports), and climb to 3000 ft at 68 KIAS on runway
+		heading.  Once at 3000, you will turn to heading 270 while slowing down to 55 KIAS.  Be sure to use mostly rudder
+		for your turns in slow flight.  The ailerons won't be very responsive at low speeds.  Once on heading 270, you will
+		fly straight and level for a brief period.  Then, I will simultaneously apply full power while 
+		pulling the yoke into my lap to force the plane into a stall.
+		
+		During recovery, you will want to refrain from attempting to roll the plane, as doing so may result in a spin, 
+		which is MUCH more difficult to recover from.  The recovery procedure is simple.  You should already have full 
+		throttle.  Then, gently push the nose down.  Use the rudder to maintain heading, as the plane will yaw and roll
+		to the left due to torque effect, and wait for your speed to get above 55 KIAS.  Then, gently pull the stick to
+		level out.  It's very important to be gentle when pulling out of the dive in order to prevent a secondary stall!
+		
+		Once you successfully recovery from the power-on stall proficiently, you will return to the airport and land.
+		
+		Passing condition: Successfully recover, losing no more than 100 ft, and land safely.
+		Estimated time required: 45 minutes	(15 minutes if the lesson is passed on the first try)
+		</description>
+		<!--audio-dir>fix me</audio-dir-->
+		<timeofday>noon</timeofday>
+		<presets>
+			<airport-id>KEFD</airport-id>
+			<on-ground>1</on-ground>
+			<runway>17R</runway>
+			<altitude-ft>-9999</altitude-ft>
+			<latitude-deg>-9999</latitude-deg>
+			<longitude-deg>-9999</longitude-deg>
+			<heading-deg>0</heading-deg>
+			<airspeed-kt>0</airspeed-kt>
+			<glideslope-deg>0</glideslope-deg>
+			<offset-azimuth-deg>0</offset-azimuth-deg>
+			<offset-distance-nm>0</offset-distance-nm>
+		</presets>
+		
+		<init>
+			<set>
+			  <property>/controls/flight/flaps</property>
+			  <value>0.0</value>
+			</set>
+			<set>
+			  <property>/controls/gear/brake-parking</property>
+			  <value>1</value>
+			</set>
+			<set>
+			  <property>/environment/weather-scenario</property>
+			  <value>Fair weather</value>
+			</set>
+			<set>
+				<property>/switches/magneto/master</property>
+				<value>0</value>
+			</set>
+			<set>
+				<property>/switches/magneto[1]/master</property>
+				<value>0</value>
+			</set>
+			<set>
+      <property>/controls/engines/engine/throttle</property>
+      <value>0.0</value>
+    </set>
+			<set>
+				<property>/switches/electric/master</property>
+				<value>0</value>
+			</set>
+			<set>
+				<property>/switches/fuel-pump</property>
+				<value>0</value>
+			</set>
+			<set>
+				<property>/instrumentation/altimeter/setting-inhg</property>
+				<property>/environment/pressure-sea-level-inhg</property>
+			</set>
+		</init>
+
+		<step>
+			<message>Set magnetos to "Both", turn on master and fuel pump, and fire the starter.</message>
+			<error>
+				<message>Set magnetos to "Both".</message>
+				<condition>
+					<and>
+						<not>
+							<property>/switches/magneto/master</property>
+							<property>/switches/magneto[1]/master</property>
+						</not>
+					</and>
+				</condition>
+			</error>
+			<error>
+				<message>Turn on the master.</message>
+				<condition>
+					<not>
+						<property>/switches/electric/master</property>
+					</not>
+				</condition>
+			</error>
+			<error>
+				<message>Turn on the fuel pump.</message>
+				<condition>
+					<not>
+						<property>/switches/fuel-pump</property>
+					</not>
+				</condition>
+			</error>
+			<exit>
+				<condition>
+					<property>/engines/engine/running</property>
+				</condition>
+			</exit>
+		</step>
+		
+		<step>
+		<message>Release the parking brakes, smoothly apply full power and start your take-off.</message>
+		<error>
+		  <message>Apply full throttle for take-off</message>
+		  <condition>
+			<less-than>
+			  <property>/controls/engines/engine/throttle</property>
+			  <value>0.95</value>
+			</less-than>
+		  </condition>
+		</error>
+		<error>
+		  <message>Release the parking brake using Shift B</message>
+		  <condition>
+			<equals>
+			  <property>/controls/gear/brake-parking</property>
+			  <value>1</value>
+			</equals>
+		  </condition>
+		</error>
+		<exit>
+		  <condition>
+			<greater-than>
+			  <property>/velocities/airspeed-kt</property>
+			  <value>5.0</value>
+			</greater-than>
+		  </condition>
+		</exit>
+	  </step>
+	  
+	  <step>
+		<message>Stay on the center-line of the runway using the rudder.</message>
+		<set>
+		  <property>/controls/engines/engine/starter</property>
+		  <value>false</value>
+		</set>
+		<exit>
+		  <condition>
+			<greater-than>
+			  <property>/velocities/airspeed-kt</property>
+			  <value>40.0</value>
+			</greater-than>
+		  </condition>
+		</exit>
+	  </step>
+	  
+	  <step>
+		<message>Rotate at 55 knots and climb straight out on heading 175 at 68 knots.</message>
+		<exit>
+		  <condition>
+			<greater-than>
+			  <property>/instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
+			  <value>300</value>
+			</greater-than>
+		  </condition>
+		</exit>
+	  </step>
+	  
+		<step>
+			<message>Continue your climb on heading 175 at 68 knots.</message>
+			<error>
+				<message>You are in danger of being "behind the power curve".  Lower the nose to increase speed.  Maintain 68 knots.</message>
+				<condition>
+					<less-than>
+						<property>/velocities/airspeed-kt</property>
+						<value>63</value>
+					</less-than>
+				</condition>
+			</error>
+			<error>
+				<message>Your climb angle is too shallow.  Raise the nose a little to decrease speed to 68 knots.</message>
+				<condition>
+					<greater-than>
+						<property>/velocities/airspeed-kt</property>
+						<value>73</value>
+					</greater-than>
+				</condition>
+			</error>
+			<exit>
+				<condition>
+					<greater-than>
+						<property>/instrumentation/altimeter/indicated-altitude-ft</property>
+						<value>2900</value>
+					</greater-than>
+				</condition>
+			</exit>
+		</step>
+		
+		<step>
+			<message>Turn left heading 090, and reduce speed to 55 knots</message>
+			<error>
+				<message>You're flying too fast.  Raise the nose a little to decrease speed to 55 knots.</message>
+				<condition>
+					<greater-than>
+						<property>/velocities/airspeed-kt</property>
+						<value>60</value>
+					</greater-than>
+				</condition>
+			</error>
+			<error>
+				<message>WARNING!  You are in danger of stalling.  Lower the nose to increase speed.  Maintain 55 knots.</message>
+				<condition>
+					<less-than>
+						<property>/velocities/airspeed-kt</property>
+						<value>50</value>
+					</less-than>
+				</condition>
+			</error>
+			<error>
+				<message>You're too high.  Reduce power a little to descend to 3000.</message>
+				<condition>
+					<greater-than>
+						<property>/instrumentation/altimeter/indicated-altitude-ft</property>
+						<value>3100</value>
+					</greater-than>
+				</condition>
+			</error>
+			<error>
+				<message>You're too low.  Increase power a little to climb to 3000.</message>
+				<condition>
+					<less-than>
+						<property>/instrumentation/altimeter/indicated-altitude-ft</property>
+						<value>2900</value>
+					</less-than>
+				</condition>
+			</error>
+			<error>
+				<message>You're turning too steep.  Bank the wings less.</message>
+				<condition>
+					<less-than>
+						<property>/orientation/roll-deg</property>
+						<value>-17.83</value>
+					</less-than>
+				</condition>
+			</error>
+			<exit>
+				<condition>
+					<less-than>
+						<property>/orientation/heading-magnetic-deg</property>
+						<value>112.83</value>
+					</less-than>
+				</condition>
+			</exit>
+		</step>
+		
+		<step>
+			<message>Now, gently roll out of the turn onto heading 090.</message>
+			<error>
+				<message>You're flying too fast.  Raise the nose a little to decrease speed to 55 knots.</message>
+				<condition>
+					<greater-than>
+						<property>/velocities.airspeed-kt</property>
+						<value>60</value>
+					</greater-than>
+				</condition>
+			</error>
+			<error>
+				<message>WARNING!  You are in danger of stalling.  Lower the nose to increase speed.  Maintain 55 knots.</message>
+				<condition>
+					<less-than>
+						<property>/velocities/airspeed-kt</property>
+						<value>50</value>
+					</less-than>
+				</condition>
+			</error>
+			<error>
+				<message>You're too high.  Reduce power a little to descend to 3000.</message>
+				<condition>
+					<greater-than>
+						<property>/instrumentation/altimeter/indicated-altitude-ft</property>
+						<value>3100</value>
+					</greater-than>
+				</condition>
+			</error>
+			<error>
+				<message>You're too low.  Increase power a little to climb to 3000.</message>
+				<condition>
+					<less-than>
+						<property>/instrumentation/altimeter/indicated-altitude-ft</property>
+						<value>2900</value>
+					</less-than>
+				</condition>
+			</error>
+			<exit>
+				<condition>
+					<greater-than>
+						<property>/orientation/heading-magnetic-deg</property>
+						<value>95</value>
+					</greater-than>
+				</condition>
+			</exit>
+		</step>
+		
+		<step>
+			<message>Fly straight and level for a bit now.  I will instruct you to stall the plane soon.</message>
+			<error>
+				<message>You're flying too fast.  Raise the nose a little to decrease speed to 55 knots.</message>
+				<condition>
+					<greater-than>
+						<property>/velocities.airspeed-kt</property>
+						<value>60</value>
+					</greater-than>
+				</condition>
+			</error>
+			<error>
+				<message>WARNING!  You are in danger of stalling.  Lower the nose to increase speed.  Maintain 55 knots.</message>
+				<condition>
+					<less-than>
+						<property>/velocities/airspeed-kt</property>
+						<value>50</value>
+					</less-than>
+				</condition>
+			</error>
+			<error>
+				<message>You're too high.  Reduce power a little to descend to 3000.</message>
+				<condition>
+					<greater-than>
+						<property>/instrumentation/altimeter/indicated-altitude-ft</property>
+						<value>3100</value>
+					</greater-than>
+				</condition>
+			</error>
+			<error>
+				<message>You're too low.  Increase power a little to climb to 3000.</message>
+				<condition>
+					<less-than>
+						<property>/instrumentation/altimeter/indicated-altitude-ft</property>
+						<value>2900</value>
+					</less-than>
+				</condition>
+			</error>
+			<error>
+		  <message>You are heading too far left, Turn right slightly to heading 090.</message>
+		  <condition>
+			<less-than>
+			  <property>/orientation/heading-magnetic-deg</property>
+			  <value>80</value>
+			</less-than>
+		  </condition>
+		</error>
+		<error>
+		  <message>You are heading too far right, Turn left slightly to heading 090.</message>
+		  <condition>
+			<greater-than>
+			  <property>/orientation/heading-magnetic-deg</property>
+			  <value>100</value>
+			</greater-than>
+		  </condition>
+		</error>
+		<exit>
+			<condition>
+				<greater-than>
+					<property>/position/longitude-deg</property>
+					<value>-95.186195</value>
+				</greater-than>
+			</condition>
+		</exit>
+		</step>
+		
+		<step>
+			<message>Now, apply full power while pulling th4e yoke into your lap.</message>
+			<error>
+				<message>You need full power.  Set the throttle to full.</message>
+				<condition>
+					<less-than>
+						<property>/controls/engines/engine/throttle</property>
+						<value>1</value>
+					</less-than>
+				</condition>
+			</error>
+			<error>
+				<message>Pull the yoke into your lap.</message>
+				<condition>
+					<greater-than>
+						<property>/controls/flight/elevator</property>
+						<value>-1</value>
+					</greater-than>
+				</condition>
+			</error>
+			<exit>
+				<condition>
+					<greater-than>
+						<property>/fdm/jsbsim/aero/alpha-rad</property>
+						<value>0.05931225</value>
+					</greater-than>
+				</condition>
+			</exit>
+		</step>
+		
+		<step>
+			<message>You are about to stall!  Get ready!</message>
+			<error>
+				<message>You are now stalling.  Lower the nose gently to increase speed.</message>
+				<condition>
+					<and>
+						<less-than>
+							<property>/instrumentation/altimeter/indicated-altitude-ft</property>
+							<property>/tutorial-props/max-altitude</property>
+						</less-than>
+						<less-than>
+							<property>/controls/flight/elevator</property>
+							<value>-0.75</value>
+						</less-than>
+					</and>
+				</condition>
+			</error>
+			<error>
+		  <message>You are heading too far left, Turn right slightly to heading 090.</message>
+		  <condition>
+			<less-than>
+			  <property>/orientation/heading-magnetic-deg</property>
+			  <value>80</value>
+			</less-than>
+		  </condition>
+		</error>
+		<error>
+		  <message>You are heading too far right, Turn left slightly to heading 090.</message>
+		  <condition>
+			<greater-than>
+			  <property>/orientation/heading-magnetic-deg</property>
+			  <value>100</value>
+			</greater-than>
+		  </condition>
+		  <error>
+			<message>You lost too much altitude.  Climb back up to 3000 and try again.</message>
+			<condition>
+				<less-than>
+					<property>/instrumentation/altimeter/indicated-altitude-ft</property>
+					<property>/tutorial-props/min-altitude</property>
+				</less-than>
+				<nasal>
+					<script>
+						<![CDATA[
+							previous([n=2]);
+						]]>
+					</script>
+				</nasal>
+			</condition>
+		  </error>
+		</error>
+			<exit>
+				<condition>
+					<and>
+						<less-than>
+							<property>/fdm/jsbsim/aero/alpha-rad</property>
+							<value>0.0395415</value>
+						</less-than>
+						<greater-than>
+							<property>/velocities/vertical-speed-fps</property>
+							<value>-0.6</value>
+						</greater-than>
+						<greater-than>
+							<property>/instrumentation/altimeter/indicated-altitude-ft</property>
+							<property>/tutorial-props/min-altitude</property>
+						</greater-than>
+					</and>
+				</condition>
+			</exit>
+		</step>
+		
+		<step>
+			<message>Nice job.  Time to land.  Turn left heading 355, and descend and maintain 1000.  Increase speed to 100 knots.</message>
+			<error>
+				<message>You're flying too fast.  Raise the nose a little to decrease speed to 100 knots.</message>
+				<condition>
+					<greater-than>
+						<property>/velocities.airspeed-kt</property>
+						<value>110</value>
+					</greater-than>
+				</condition>
+			</error>
+			<error>
+				<message>You're flying too slow.  Lower the nose to increase speed.  Maintain 100 knots.</message>
+				<condition>
+					<less-than>
+						<property>/velocities/airspeed-kt</property>
+						<value>90</value>
+					</less-than>
+				</condition>
+			</error>
+			<error>
+		  <message>You are heading too far left, Turn right slightly to heading 355.</message>
+		  <condition>
+			<and>
+				<less-than>
+				  <property>/orientation/heading-magnetic-deg</property>
+				  <value>345</value>
+				</less-than>
+				<greater-than>
+					<property>/orientation/heading-magnetic-deg</property>
+					<value>180</value>
+				</greater-than>
+			</and>
+		  </condition>
+		</error>
+		<error>
+		  <message>You are heading too far right, Turn left slightly to heading 355.</message>
+		  <condition>
+			<and>
+				<greater-than>
+				  <property>/orientation/heading-magnetic-deg</property>
+				  <value>005</value>
+				</greater-than>
+				<less-than>
+					<property>/orientation/heading-magnetic-deg</property>
+					<value>180</value>
+				</less-than>
+			</and>
+		  </condition>
+		</error>
+		<exit>
+			<condition>
+				<greater-than>
+					<property>/position/latitude-deg</property>
+					<value>29.593967</value>
+				</greater-than>
+			</condition>
+		</exit>
+		</step>
+		
+		<step>
+			<message>Continue down to 1000 on heading 355.  Reduce speed to 90 knots.</message>
+			<error>
+				<message>You're flying too fast.  Raise the nose a little to decrease speed to 90 knots.</message>
+				<condition>
+					<greater-than>
+						<property>/velocities.airspeed-kt</property>
+						<value>100</value>
+					</greater-than>
+				</condition>
+			</error>
+			<error>
+				<message>You're flying too slow.  Lower the nose to increase speed.  Maintain 55 knots.</message>
+				<condition>
+					<less-than>
+						<property>/velocities/airspeed-kt</property>
+						<value>80</value>
+					</less-than>
+				</condition>
+			</error>
+			<error>
+		  <message>You are heading too far left, Turn right slightly to heading 355.</message>
+		  <condition>
+			<and>
+				<less-than>
+				  <property>/orientation/heading-magnetic-deg</property>
+				  <value>345</value>
+				</less-than>
+				<greater-than>
+					<property>/orientation/heading-magnetic-deg</property>
+					<value>180</value>
+				</greater-than>
+			</and>
+		  </condition>
+		</error>
+		<error>
+		  <message>You are heading too far right, Turn left slightly to heading 355.</message>
+		  <condition>
+			<and>
+				<greater-than>
+				  <property>/orientation/heading-magnetic-deg</property>
+				  <value>005</value>
+				</greater-than>
+				<less-than>
+					<property>/orientation/heading-magnetic-deg</property>
+					<value>180</value>
+				</less-than>
+			</and>
+		  </condition>
+		</error>
+		<exit>
+			<condition>
+				<greater-than>
+					<property>/position/latitude-deg</property>
+					<value>29.654976</value>
+				</greater-than>
+			</condition>
+		</exit>
+		</step>
+		
+		<step>
+			<message>Continue descending.  Turn left heading 265.  Reduce speed to 80 knots.</message>
+			<error>
+				<message>You're flying too fast.  Raise the nose a little to decrease speed to 80 knots.</message>
+				<condition>
+					<greater-than>
+						<property>/velocities.airspeed-kt</property>
+						<value>90</value>
+					</greater-than>
+				</condition>
+			</error>
+			<error>
+				<message>You're flying too slow.  Lower the nose to increase speed.  Maintain 80 knots.</message>
+				<condition>
+					<less-than>
+						<property>/velocities/airspeed-kt</property>
+						<value>70</value>
+					</less-than>
+				</condition>
+			</error>
+			<error>
+		  <message>You are heading too far left, Turn right slightly to heading 265.</message>
+		  <condition>
+				<less-than>
+				  <property>/orientation/heading-magnetic-deg</property>
+				  <value>255</value>
+				</less-than>
+		  </condition>
+		</error>
+		<error>
+		  <message>You are heading too far right, Turn left slightly to heading 265.</message>
+		  <condition>
+				<greater-than>
+				  <property>/orientation/heading-magnetic-deg</property>
+				  <value>275</value>
+				</greater-than>
+		  </condition>
+		</error>
+		<exit>
+			<condition>
+				<less-than>
+					<property>/position/longitude-deg</property>
+					<value>-95.153709</value>
+				</less-than>
+			</condition>
+		</exit>
+		</step>
+		
+		<step>
+			<message>Turn final.  Reduce speed to 65 knots.  Lower the flaps.  Good luck!</message>
+			<error>
+				<message>You're flying too fast.  Raise the nose a little to decrease speed to 65 knots.</message>
+				<condition>
+					<greater-than>
+						<property>/velocities.airspeed-kt</property>
+						<value>70</value>
+					</greater-than>
+				</condition>
+			</error>
+			<error>
+				<message>You're flying too slow.  Lower the nose to increase speed.  Maintain 70 knots.</message>
+				<condition>
+					<less-than>
+						<property>/velocities/airspeed-kt</property>
+						<value>60</value>
+					</less-than>
+				</condition>
+			</error>
+		<exit>
+			<condition>
+				<less-than>
+					<property>/position/altitude-agl-ft</property>
+					<value>41.6</value>
+				</less-than>
+			</condition>
+		</exit>
+		</step>
+		
+		<step>
+			<message>Cut the power, dive a little lower to maintain speed, and flare gently.</message>
+			<exit>
+				<condition>
+					<or>
+						<property>/gear/gear[1]/wow</property>
+						<property>/gear/gear[2]/wow</property>
+					</or>
+				</condition>
+				<nasal>
+					<script>
+						<![CDATA[
+						if (getprop("/tutorial-props/landing-rate") > -5)
+							screen.log.write("Great landing!", 1, 1, 1);
+						else
+							screen.log.write("Ouch!  Terrible landing!", 1, 1, 1);
+						]]>
+					</script>
+				</nasal>
+			</exit>
+		</step>
+		
+		<step>
+			<message>Raise the flaps.  Taxi down the runway, and exit right on the next taxiway (NOT the closed runway).</message>
+			<error>
+				<message>Reduce power to idle.  We need to slow down.</message>
+				<condition>
+					<and>
+						<greater-than>
+							<property>/controls/engines/engine/throttle</property>
+							<value>0</value>
+						</greater-than>
+						<greater-than>
+							<property>/velocities/groundspeed-kt</property>
+							<value>20</value>
+						</greater-than>
+					</and>
+				</condition>
+			</error>
+			<exit>
+				<condition>
+					<less-than>
+						<property>/position/latitude-deg</property>
+						<value>29.607061</value>
+					</less-than>
+				</condition>
+			</exit>
+		</step>
+		
+		<step>
+			<message>Exit right onto the taxiway</message>
+			<exit>
+				<condition>
+					<greater-than>
+						<property>/orientation/heading-magnetic-deg</property>
+						<value>255</value>
+					</greater-than>
+				</condition>
+			</exit>
+		</step>
+		
+		<step>
+			<message>Power up a bit, and conitnue taxi to parking, straight ahead.</message>
+			<error>
+				<message>You're taxiing too fast.  Slow down.</message>
+				<condition>
+					<greater-than>
+						<property>/velocities/groundspeed-kt</property>
+						<value>15</value>
+					</greater-than>
+				</condition>
+			</error>
+			<exit>
+				<condition>
+					<less-than>
+						<property>/position/longitude-deg</property>
+						<value>-95.167648</value>
+					</less-than>
+				</condition>
+			</exit>
+		</step>
+		
+		<end>
+			<message>Congratulations on surviving your first flight lesson.  Now, you can park and grab a burger!</message>
+		</end>
+</PropertyList>

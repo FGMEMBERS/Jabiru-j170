@@ -1,0 +1,785 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+	<path>cockpit.ac</path>
+	
+	<!-- Glass Shader -->
+	
+	<animation>
+		<type>shader</type>
+		<shader>chrome</shader>
+		<texture>instrument_glass.png</texture>
+		<object-name>instrument_glass</object-name>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>starter</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>nasal</command>
+				<script>
+				if ((jabiru.battery.charge_norm > 0.05) and (getprop("/sim/multiplay/generic/int[6]")))
+					controls.startEngine();
+				else
+					print("Not enough power to run starter...");
+				</script>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>nasal</command>
+					<script>setprop("/controls/engines/engine/starter", 0);</script>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>key</object-name>
+		<object-name>key_rotated</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-toggle</command>
+				<property>/sim/multiplay/generic/int[6]</property>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>master</object-name>
+		<object-name>key</object-name>
+		<condition>
+			<not>
+				<property>/sim/multiplay/generic/int[6]</property>
+			</not>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>master_rotated</object-name>
+		<object-name>key_rotated</object-name>
+		<condition>
+			<property>/sim/multiplay/generic/int[6]</property>
+		</condition>
+	</animation>
+	
+	<!-- Circuit Breakers -->
+	
+	<animation>
+		<type>pick</type>
+		<object-name>cb.strobe</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-toggle</command>
+				<property>/switches/circuit-breakers/strobe</property>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>cb.land</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-toggle</command>
+				<property>/switches/circuit-breakers/landing</property>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>cb.avionics</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-toggle</command>
+				<property>/switches/circuit-breakers/avionics</property>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>cb.fp</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-toggle</command>
+				<property>/switches/circuit-breakers/fuel-pump</property>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>cb.flaps</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-toggle</command>
+				<property>/switches/circuit-breakers/elec-flaps</property>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>cb.strobe</object-name>
+		<property>/switches/circuit-breakers/strobe</property>
+		<factor>0.008</factor>
+		<axis>
+			<x>1</x>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>cb.land</object-name>
+		<property>/switches/circuit-breakers/landing</property>
+		<factor>0.008</factor>
+		<axis>
+			<x>1</x>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>cb.avionics</object-name>
+		<property>/switches/circuit-breakers/avionics</property>
+		<factor>0.008</factor>
+		<axis>
+			<x>1</x>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>cb.fp</object-name>
+		<property>/switches/circuit-breakers/fuel-pump</property>
+		<factor>0.008</factor>
+		<axis>
+			<x>1</x>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>cb.flaps</object-name>
+		<property>/switches/circuit-breakers/elec-flaps</property>
+		<factor>0.008</factor>
+		<axis>
+			<x>1</x>
+		</axis>
+	</animation>
+	
+	<!-- Carburator Controls -->
+	
+	<animation>
+		<type>pick</type>
+		<object-name>choke</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-toggle</command>
+				<property>/switches/carb-choke</property>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>choke</object-name>
+		<property>/sim/multiplay/generic/int[8]</property>
+		<factor>0.0289</factor>
+		<axis>
+			<x>1</x>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>heat</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-toggle</command>
+				<property>/switches/carb-heat</property>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>heat</object-name>
+		<property>/sim/multiplay/generic/int[9]</property>
+		<factor>90</factor>
+		<axis>
+			<x>-1</x>
+		</axis>
+		<center>
+			<x-m>0</x-m>
+			<y-m>-0.0477</y-m>
+			<z-m>0.0035</z-m>
+		</center>
+	</animation>
+	
+	<!-- Cockpit Switches -->
+	
+	<animation>
+		<type>pick</type>
+		<object-name>mag1</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-cycle</command>
+				<property>/switches/magneto/master</property>
+				<value>1</value>
+				<value>0</value>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>mag2</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-cycle</command>
+				<property>/switches/magneto[1]/master</property>
+				<value>1</value>
+				<value>0</value>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>fuel_pump</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-toggle</command>
+				<property>/switches/fuel-pump</property>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>avionics</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-toggle</command>
+				<property>/switches/avionics</property>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>landing_lights</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-toggle</command>
+				<property>/switches/landing</property>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>strobe</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-toggle</command>
+				<property>/switches/strobe</property>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>mag1</object-name>
+		<property>/sim/multiplay/generic/int[10]</property>
+		<factor>30</factor>
+		<axis>
+			<y>-1</y>
+		</axis>
+		<center>
+			<x-m>-0.7299</x-m>
+			<y-m>0</y-m>
+			<z-m>0.0566</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>mag2</object-name>
+		<property>/sim/multiplay/generic/int[11]</property>
+		<factor>30</factor>
+		<axis>
+			<y>-1</y>
+		</axis>
+		<center>
+			<x-m>-0.7299</x-m>
+			<y-m>0</y-m>
+			<z-m>0.0548</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>fuel_pump</object-name>
+		<property>/sim/multiplay/generic/int[12]</property>
+		<factor>30</factor>
+		<axis>
+			<y>-1</y>
+		</axis>
+		<center>
+			<x-m>-0.7299</x-m>
+			<y-m>0</y-m>
+			<z-m>0.0526</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>avionics</object-name>
+		<property>/sim/multiplay/generic/int[13]</property>
+		<factor>30</factor>
+		<axis>
+			<y>-1</y>
+		</axis>
+		<center>
+			<x-m>-0.7299</x-m>
+			<y-m>0</y-m>
+			<z-m>0.0509</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>landing_lights</object-name>
+		<property>/sim/multiplay/generic/int[14]</property>
+		<factor>30</factor>
+		<axis>
+			<y>-1</y>
+		</axis>
+		<center>
+			<x-m>-0.7299</x-m>
+			<y-m>0</y-m>
+			<z-m>0.0488</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>strobe</object-name>
+		<property>/sim/multiplay/generic/int[15]</property>
+		<factor>30</factor>
+		<axis>
+			<y>-1</y>
+		</axis>
+		<center>
+			<x-m>-0.7299</x-m>
+			<y-m>0</y-m>
+			<z-m>0.0471</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<type>material</type>
+		<object-name>analog</object-name>
+		<object-name>airspeed-needle</object-name>
+		<condition>
+			<property>/sim/multiplay/generic/int[6]</property>
+		</condition>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+		</emission>
+	</animation>
+	
+	<animation>
+		<type>material</type>
+		<object-name>master.light</object-name>
+		<condition>
+			<property>/sim/multiplay/generic/int[6]</property>
+		</condition>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+		</emission>
+	</animation>
+	
+	<animation>
+		<type>material</type>
+		<object-name>starter.light</object-name>
+		<condition>
+			<property>/sim/multiplay/generic/float[6]</property>
+		</condition>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+		</emission>
+	</animation>
+	
+	<animation>
+		<type>material</type>
+		<object-name>charge.light</object-name>
+		<condition>
+			<property>/sim/multiplay/generic/int[6]</property>
+		</condition>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+			<factor-prop>/sim/multiplay/generic/float[8]</factor-prop>
+		</emission>
+	</animation>
+	
+	<animation>
+		<type>material</type>
+		<object-name>fuelpress.light</object-name>
+		<condition>
+			<property>/sim/multiplay/generic/int[6]</property>
+		</condition>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+			<factor-prop>/sim/multiplay/generic/float[9]</factor-prop>
+		</emission>
+	</animation>
+	
+	<animation>
+		<type>textranslate</type>
+		<object-name>fuelpress.light</object-name>
+		<property>/sim/multiplay/generic/int[10]</property>
+		<factor>0.25</factor>
+		<axis>
+			<y>-1</y>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>textranslate</type>
+		<object-name>master.light</object-name>
+		<property>/sim/multiplay/generic/int[6]</property>
+		<factor>0.25</factor>
+		<axis>
+			<y>-1</y>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>textranslate</type>
+		<object-name>starter.light</object-name>
+		<property>/sim/multiplay/generic/int[7]</property>
+		<factor>0.25</factor>
+		<axis>
+			<y>-1</y>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>textranslate</type>
+		<object-name>charge.light</object-name>
+		<property>/sim/multiplay/generic/float[7]</property>
+		<factor>0.25</factor>
+		<axis>
+			<y>-1</y>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>pick</type>
+		<object-name>flaps_switch</object-name>
+		<action>
+			<button>0</button>
+			<binding>
+				<command>property-cycle</command>
+				<property>/controls/flight/flaps</property>
+				<value>1</value>
+				<value>0</value>
+			</binding>
+		</action>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>flaps_switch</object-name>
+		<property>/sim/multiplay/generic/float[11]</property>
+		<factor>45</factor>
+		<axis>
+			<y>1</y>
+		</axis>
+		<center>
+			<x-m>-0.7301</x-m>
+			<y-m>0</y-m>
+			<z-m>0.0356</z-m>
+		</center>
+	</animation>
+	
+	<animation>
+		<type>translate</type>
+		<object-name>throttle</object-name>
+		<property>controls/engines/engine/throttle</property>
+		<factor>0.06</factor>
+		<axis>
+			<x>1</x>
+		</axis>
+	</animation>
+	
+	<!-- Airspeed Indicator -->
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>airspeed-needle</object-name>
+		<property>/sim/multiplay/generic/float</property>
+		<interpolation>
+		<entry><ind>   0</ind><dep>    0</dep></entry>
+		<entry><ind>  35</ind><dep>   36</dep></entry>
+		<entry><ind>  40</ind><dep>   50</dep></entry>
+		<entry><ind>  60</ind><dep>  100</dep></entry>
+		<entry><ind>  80</ind><dep>  152</dep></entry>
+		<entry><ind> 100</ind><dep>  206</dep></entry>
+		<entry><ind> 120</ind><dep>  249</dep></entry>
+		<entry><ind> 140</ind><dep>  291</dep></entry>
+		<entry><ind> 160</ind><dep>  333</dep></entry>
+		<entry><ind> 190</ind><dep>  340</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0.2156</y-m>
+			<z-m>0.2111</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<!-- Altimeter -->
+	
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>needle-w</object-name>
+		<property>/sim/multiplay/generic/float[1]</property>
+		<factor>3.6</factor>  
+		<center>
+			<x-m>0</x-m>
+			<y-m>0.3111</y-m>
+			<z-m>0.2110</z-m>
+		</center>		
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<!-- altimeter drum counter -->
+	<animation>
+		<type>textranslate</type>
+		<object-name>drum-1</object-name>
+		<property>/sim/multiplay/generic/float[1]</property>
+		<factor>0.001</factor>
+		<offset>-75</offset>
+		<step>100</step>
+		<scroll>10</scroll>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>drum-2</object-name>
+		<property>/sim/multiplay/generic/float[1]</property>
+		<factor>0.0001</factor>
+		<offset>-750</offset>
+		<step>1000</step>
+		<scroll>25</scroll>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>drum-3</object-name>
+		<property>/sim/multiplay/generic/float[1]</property>
+		<factor>0.00001</factor>
+		<offset>-7500</offset>
+		<step>10000</step>
+		<scroll>25</scroll>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<!-- barometer drum counter -->
+	<animation>
+		<type>textranslate</type>
+		<object-name>drum-inhg-1</object-name>
+		<property>/sim/multiplay/generic/float[2]</property>
+		<factor>10</factor>
+		<offset>-0.01</offset>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>drum-inhg-2</object-name>
+		<property>/sim/multiplay/generic/float[2]</property>
+		<factor>1</factor>
+		<offset>-0.1</offset>
+		<step>0.1</step>
+		<scroll>0.01</scroll>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>drum-inhg-3</object-name>
+		<property>/sim/multiplay/generic/float[2]</property>
+		<factor>0.1</factor>
+		<offset>-1</offset>
+		<step>1</step>
+		<scroll>0.01</scroll>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>drum-inhg-4</object-name>
+		<property>/sim/multiplay/generic/float[2]</property>
+		<factor>0.01</factor>
+		<offset>-10</offset>
+		<step>10</step>
+		<scroll>0.01</scroll>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<!-- Altimeter Setting Knob -->
+	
+	<animation>
+		<type>pick</type>
+		<object-name>altimeter_knob</object-name>
+		<action>
+			<button>0</button>
+			<button>3</button>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>instrumentation/altimeter/setting-inhg</property>
+				<step>0.01</step>
+				<max>33.00</max>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<button>4</button>
+			<repeatable type="bool">true</repeatable>
+			<binding>
+				<command>property-adjust</command>
+				<property>instrumentation/altimeter/setting-inhg</property>
+				<step>-0.01</step>
+				<min>26.0</min>
+			</binding>
+		</action>
+	</animation>
+	
+	<!-- Turn Co-ordinator -->
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>Airplane</object-name>
+		<property>/sim/multiplay/generic/float[3]</property>
+		<factor>20.0</factor>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0.2143</y-m>
+			<z-m>0.1181</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>Ball</object-name>
+		<property>/sim/multiplay/generic/float[4]</property>
+		<factor>5.729</factor>
+		<min-deg>-5</min-deg>
+		<max-deg>5</max-deg>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0.2143</y-m>
+			<z-m>0.3681</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<model>
+		<name>Garmin_aera500-GPS</name>
+		<path>Aircraft/Jabiru-j170/Models/Garmin_Aera500/garmin_aera500.xml</path>
+		<condition>
+			<equals>
+				<property>/sim/multiplay/generic/float[5]</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</model>
+
+</PropertyList>

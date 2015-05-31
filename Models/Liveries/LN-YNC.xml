@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<sim>    
+  <model>        
+    <livery>
+      <name type="string">LN-YNC</name>
+      <texture-main>LN-YNC-main.png</texture-main>
+      <texture-wings>LN-YNC-wings.png</texture-wings>
+    </livery>
+  </model>
+</sim>
+
+</PropertyList>
